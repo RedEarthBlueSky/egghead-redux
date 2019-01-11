@@ -2,9 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux'
 
 const ToDo = (props) => {
-  console.log('todo props:  ', props)
-  console.log('todo props todos: ', props.todos.todos)
-  console.log('todo props input value: ', props.inputValue)
+  // console.log('todo props:  ', props)
+  // console.log('todo props todos: ', props.todos)
+  // console.log('todo props input value: ', props.inputValue)
 
   return (
     <div>
@@ -20,8 +20,13 @@ const ToDo = (props) => {
           Add ToDo
         </button>
         <ul>
-          {props.todos.todos.map(todo =>
-            <li key={todo.id}>
+          {props.todos.map(todo =>
+            <li
+              key={todo.id}
+              style={{ textDecoration: todo.completed ? 'line-through' : 'none'}}
+              onClick={props.toggleTodo}
+              value={todo.id}
+            >
               {todo.id+1}: {todo.text}
             </li>
           )}
@@ -33,7 +38,7 @@ const ToDo = (props) => {
 
 const mapStateToProps = state => {
   return {
-    todos: state.todosReducer,
+    todos: state.todosReducer.todos,
     inputValue: state.setInputValue,
   }
 }
