@@ -29,7 +29,6 @@ const todos = (state = [], action) => {
         todo(undefined, action)
       ]
     case 'TOGGLE_TODO':
-      console.log('state from the reducer: ', state)
       return state.map(t =>
         todo(t, action)
       )
@@ -46,22 +45,6 @@ const visibilityFilter = (state = 'SHOW_ALL', action) => {
       return state
   }
 }
-
-// derive combineReducers
-// const combineReducersImplement = (reducers) => {
-//   return (state = {}, action) => {
-//     Object.keys(reducers).reducer(
-//       (nextState, key) => {
-//         nextState[key] = reducers[key] (
-//           state[key],
-//           action
-//         )
-//         return nextState
-//       },
-//       {}
-//     )
-//   }
-// }
 
 const todosReducer = combineReducers({
   todos: todos,

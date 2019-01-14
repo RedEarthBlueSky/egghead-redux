@@ -3,16 +3,16 @@ import { Provider } from 'react-redux'
 
 import './App.css';
 import store from './redux_Store'
-import Counter from './counter'
-import ToDo from './todo'
+import Counter from './components/Counter'
+import ToDo from './components/Todos'
 
 import {
   onTodoClickTest,
   updateInput,
   onCounterDecrement,
   onCounterIncrement,
-  toggleTodoClick
-} from './action_creators'
+  toggleTodoClick,
+} from './Actions'
 
 class App extends Component {
   render() {
