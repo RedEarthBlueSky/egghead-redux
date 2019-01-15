@@ -4,7 +4,7 @@ import { Provider } from 'react-redux'
 import './App.css';
 import store from './redux_Store'
 import Counter from './components/Counter'
-import ToDo from './components/Todos'
+import ToDoApp from './components/TodoApp'
 
 import {
   onTodoClickTest,
@@ -16,8 +16,6 @@ import {
 
 class App extends Component {
   render() {
-    // todoTestFunc()
-    console.log('App props:  ')
     return (
       <Provider store={store}>
         <div className="App">
@@ -25,7 +23,7 @@ class App extends Component {
             plus={onCounterIncrement}
             minus={onCounterDecrement}
           />
-          <ToDo
+          <ToDoApp
             addTodo={onTodoClickTest}
             handleChange={updateInput}
             toggleTodo={toggleTodoClick}

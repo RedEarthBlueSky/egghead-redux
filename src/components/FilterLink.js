@@ -1,17 +1,17 @@
 import React from 'react'
-import { connect } from 'react-redux'
-import store from '../redux_Store'
 
-const FilterLink = ({ filter, children, todos, currentFilter }) => {
+const FilterLink = ({ onFilterClick, filter, children, todos, currentFilter }) => {
+
+  if (filter === currentFilter) {
+    return <h4>{children}</h4>
+  }
+
   return (
     <div>
       <button
         onClick={event => {
           event.preventDefault()
-          store.dispatch({
-            type: 'SET_VISIBILITY_FILTER',
-            filter
-          })
+          onFilterClick(filter)
         }}
       >
         {children}
@@ -20,10 +20,4 @@ const FilterLink = ({ filter, children, todos, currentFilter }) => {
   )
 }
 
-const mapStateToProps = state => {
-  return {
-    todos: state.todosReducer.todos,
-  }
-}
-
-export default connect(mapStateToProps)(FilterLink)
+export default FilterLink

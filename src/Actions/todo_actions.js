@@ -45,6 +45,5 @@ export const setVisibilityFilter = (event) => {
   store.dispatch({
     type: 'SET_VISIBILITY_FILTER',
     filter: this.filter,
-    todos: this.todos
   })
 }
