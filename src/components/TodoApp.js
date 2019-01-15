@@ -1,48 +1,25 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import store from '../redux_Store'
 import TodoList from './TodoList'
 import AddTodo from './AddTodo'
 import Footer from './Footer'
+import { getVisibleTodos } from './helpers/todoHelper'
 
-const getVisibleTodos = ( todos, filter ) => {
-  switch(filter) {
-    case 'SHOW_ALL':
-      return todos
-    case 'SHOW_COMPLETED':
-      return todos.filter(
-        t => t.completed
-      )
-    case 'SHOW_ACTIVE':
-      return todos.filter(
-        t => !t.completed
-      )
-    default:
-      return todos
-  }
-}
+import { onTodoClickTest, updateInput, toggleTodoClick } from '../Actions'
 
-const ToDoApp = ({ toggleTodo, todos, visibilityFilter, handleChange, inputValue, addTodo }) => (
+const ToDoApp = ({ todos, visibilityFilter, inputValue }) => (
   <div>
     <h2>ToDo</h2>
       <AddTodo
-        handleChange={handleChange}
+        handleChange={updateInput}
         inputValue={inputValue}
-        addTodo={addTodo}
+        addTodo={onTodoClickTest}
       />
       <TodoList
         todos={getVisibleTodos(todos, visibilityFilter )}
-        toggleTodo={toggleTodo}
+        toggleTodo={toggleTodoClick}
       />
-      <Footer
-        visibilityFilter={visibilityFilter}
-        onFilterClick={filter =>
-          store.dispatch({
-            type: 'SET_VISIBILITY_FILTER',
-            filter
-          })
-        }
-      />
+      <Footer />
   </div>
 )
 

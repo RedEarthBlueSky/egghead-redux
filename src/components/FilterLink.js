@@ -1,23 +1,35 @@
-import React from 'react'
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import store from '../redux_Store'
+import Link from './Link'
 
-const FilterLink = ({ onFilterClick, filter, children, todos, currentFilter }) => {
-
-  if (filter === currentFilter) {
-    return <h4>{children}</h4>
+class FilterLink extends Component {
+  constructor(props) {
+    super(props)
+    this.props = props
   }
-
-  return (
-    <div>
-      <button
-        onClick={event => {
-          event.preventDefault()
-          onFilterClick(filter)
-        }}
+  render() {
+    const { filter, visibilityFilter, children } = this.props
+    return (
+      <Link
+        active={filter === visibilityFilter}
+        onClick={() =>
+          store.dispatch({
+            type: 'SET_VISIBILITY_FILTER',
+            filter
+          })
+        }
       >
         {children}
-      </button>
-    </div>
-  )
+      </Link>
+    )
+  }
 }
 
-export default FilterLink
+const mapStateToProps = state => {
+  return {
+    visibilityFilter: state.todosReducer.visibilityFilter
+  }
+}
+
+export default connect(mapStateToProps)(FilterLink)
