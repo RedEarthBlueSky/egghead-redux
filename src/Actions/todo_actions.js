@@ -1,12 +1,8 @@
-
 // bound action creators
-
 import store from '../redux_Store'
-
 let nextTodoId = 0
 
-export const onTodoClickTest = (event) => {
-  event.preventDefault()
+export const addTodo = () => {
   const currentState = store.getState()
   store.dispatch({
     type: 'ADD_TODO',
@@ -16,11 +12,10 @@ export const onTodoClickTest = (event) => {
   clearInput()
 }
 
-export const updateInput = (event) => {
-  event.preventDefault()
+export const updateInput = (value) => {
   store.dispatch({
     type: 'SET_INPUT_VALUE',
-    value: event.target.value
+    value
   })
 }
 
@@ -32,7 +27,7 @@ export const clearInput = () => {
 }
 
 //  setting a value with event.target is a bit of a hack but ...
-export const toggleTodoClick = (event) => {
+export const toggleTodo = (event) => {
   event.preventDefault()
   store.dispatch({
     type: 'TOGGLE_TODO',
@@ -40,10 +35,9 @@ export const toggleTodoClick = (event) => {
   })
 }
 
-export const setVisibilityFilter = (event) => {
-  event.preventDefault()
+export const setVisibilityFilter = (filter) => {
   store.dispatch({
     type: 'SET_VISIBILITY_FILTER',
-    filter: this.filter,
+    filter,
   })
 }

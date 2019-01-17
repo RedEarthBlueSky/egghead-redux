@@ -1,11 +1,16 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import Todo from './Todo'
 
-const TodoList = ({ todos, toggleTodo }) => {
+import { getVisibleTodos } from './helpers/todoHelper'
+import { toggleTodo } from '../Actions'
+
+const TodoList = ({ todos, visibilityFilter }) => {
+  const filteredTodos = getVisibleTodos(todos, visibilityFilter )
   return (
     <ul>
       {
-        todos.map(todo =>
+        filteredTodos.map(todo =>
           <Todo
             key={todo.id}
             todo={todo}
@@ -17,4 +22,11 @@ const TodoList = ({ todos, toggleTodo }) => {
   )
 }
 
-export default TodoList
+const mapStateToProps = state => {
+  return {
+    todos: state.todosReducer.todos,
+    visibilityFilter: state.todosReducer.visibilityFilter
+  }
+}
+
+export default connect(mapStateToProps)(TodoList);
