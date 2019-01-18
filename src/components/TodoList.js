@@ -14,7 +14,10 @@ const TodoList = ({ todos, visibilityFilter }) => {
           <Todo
             key={todo.id}
             todo={todo}
-            onClick={toggleTodo}
+            onClick={e => {
+              e.preventDefault()
+              toggleTodo(todo.id)
+            }}
           />
         )
       }
@@ -22,11 +25,9 @@ const TodoList = ({ todos, visibilityFilter }) => {
   )
 }
 
-const mapStateToProps = state => {
-  return {
+const mapStateToProps = state => ({
     todos: state.todosReducer.todos,
     visibilityFilter: state.todosReducer.visibilityFilter
-  }
-}
+})
 
 export default connect(mapStateToProps)(TodoList);

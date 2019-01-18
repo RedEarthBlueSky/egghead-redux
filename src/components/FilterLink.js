@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import store from '../redux_Store'
+import store from '../Store/Store'
 import Link from './Link'
 
 class FilterLink extends Component {

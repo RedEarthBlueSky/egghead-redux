@@ -1,5 +1,5 @@
 //  bound action creators
-import store from '../redux_Store'
+import store from '../Store/Store'
 
 export const onCounterIncrement = () => { store.dispatch({ type: 'INCREMENT' })}
 export const onCounterDecrement = () => { store.dispatch({ type: 'DECREMENT'})}

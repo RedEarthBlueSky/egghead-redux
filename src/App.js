@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Provider } from 'react-redux'
 
 import './App.css';
-import store from './redux_Store'
+import store from './Store/Store'
 import Counter from './components/Counter'
 import ToDoApp from './components/TodoApp'
 

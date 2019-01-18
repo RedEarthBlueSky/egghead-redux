@@ -1,13 +1,12 @@
 // bound action creators
-import store from '../redux_Store'
+import store from '../Store/Store'
 let nextTodoId = 0
 
-export const addTodo = () => {
-  const currentState = store.getState()
+export const addTodo = (text) => {
   store.dispatch({
     type: 'ADD_TODO',
-    text: currentState.setInputValue,
     id: nextTodoId++,
+    text,
   })
   clearInput()
 }
@@ -26,12 +25,10 @@ export const clearInput = () => {
   })
 }
 
-//  setting a value with event.target is a bit of a hack but ...
-export const toggleTodo = (event) => {
-  event.preventDefault()
+export const toggleTodo = (id) => {
   store.dispatch({
     type: 'TOGGLE_TODO',
-    id: event.target.value,
+    id,
   })
 }
 

@@ -25,7 +25,6 @@ const AddTodo = ({ inputValue }) => {
 }
 
 const mapStateToProps = state => {
-  console.log('Addtodo state', state)
   return {
     inputValue: state.setInputValue,
   }
